@@ -69,16 +69,11 @@ if(file_exists($licenca)) {
 							fclose($fp);
 							exit("Voce nao possui a custodia deste item! Atencao: Esta tentativa de acesso foi identificada e registrada. O uso indevido de dispositivos e licencas, assim como a tentativa de acesso nao autorizado configuram infracao prevista no codigo penal brasileiro e estao sujeitas a acoes judiciais.");
 							}
-						if(substr($historico,(strrpos($historico,"Natureza:")+10),(strrpos($historico,"Data")-(strrpos($historico,"Natureza:")+13)))=="(1) venda") {
-							$natureza = "(1) compra";
+						if(substr($historico,(strrpos($historico,"Natureza:")+10),(strrpos($historico,"Data")-(strrpos($historico,"Natureza:")+13)))=="(3) entrega - (1) venda") {
+							$natureza = "(2) recebimento - (1) compra";
 							}
 							else {
-								if(substr($historico,(strrpos($historico,"Natureza:")+10),(strrpos($historico,"Data")-(strrpos($historico,"Natureza:")+13)))=="(1) compra") {
-
-								}
-								else {
-									$natureza = substr($historico,(strrpos($historico,"Natureza:")+10),(strrpos($historico,"Data")-(strrpos($historico,"Natureza:")+13)));
-								}
+								$natureza = str_replace("(3) entrega","(2) recebimento",$natureza);
 							}
 						}
 					fclose($fp);
